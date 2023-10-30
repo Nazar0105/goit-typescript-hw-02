@@ -1,23 +1,22 @@
-/*
-  У вас є тип AllType. Існує функція compare, яка приймає два об'єкти. Ці об'єкти містять поля AllType. 
-  Ваше завдання – використовувати Pick та generics для вказівки, що поля цих об'єктів належать AllType.
-  Функція compare повинна повертати AllType.
-*/
+// Переробив функцію compare використовуючи generics:
 
 type AllType = {
   name: string;
   position: number;
   color: string;
-  weight: number
+  weight: number;
 }
 
-function compare (top, bottom): AllType {
+function compare<T extends AllType, U extends AllType>(top: T, bottom: U): AllType {
   return {
     name: top.name,
     color: top.color,
     position: bottom.position,
     weight: bottom.weight,
-  }
+  };
 }
 
-export {};
+// В цьому прикладі я використав generics<T extends AllType, U extends
+// AllType>, щоб вказати, що обидва аргументи "top" і "bottom" мають відповідати типу
+// AllType.Тепер функція "compare" приймає два об'єкти з полями типу "AllType" і 
+// повертає об'єкт типу "AllType".

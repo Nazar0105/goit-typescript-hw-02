@@ -1,23 +1,17 @@
-/*
-  Створіть новий тип даних, який підходить для цих двох об'єктів.
-*/
+// Для цього завдання я можу визначити і використовувати інтерфейс TypeScript,
+// оскільки я маю об'єкти з однаковою структурою. Ось, як виглядає визначення інтерфейсу для цих об'єктів:
 
-const page1 = {
-  title: 'The awesome page',
-  likes: 100,
-  accounts: ['Max', 'Anton', 'Nikita'],
-  status: 'open',
-  details: {
-    createAt: new Date('2021-01-01'),
-    updateAt: new Date('2021-05-01'),
-  }
+interface Page {
+  title: string;
+  likes: number;
+  accounts: string[];
+  status: 'open' | 'close';
+  details?: {
+    createAt: Date;
+    updateAt: Date;
+  };
 }
 
-const page2 = {
-  title: 'Python or Js',
-  likes: 5,
-  accounts: ['Alex'],
-  status: 'close',
-}
-
-export {};
+// Цей інтерфейс "Page" визначає тип об'єкта, який включає рядок "title", числове
+// значення "likes", масив рядків "accounts" та рядок "status", який може бути або
+// 'open', або 'close'.Опціонально, об'єкт "details" містить додаткову інформацію, включаючи дати "createAt" та "updateAt".
