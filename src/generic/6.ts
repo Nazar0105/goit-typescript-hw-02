@@ -1,19 +1,19 @@
-// Для того, щоб уникнути помилок типу при виклику функції "createOrUpdateUser", мені
-// потрібно оновити тип аргументу "initialValues" так, щоб всі поля були
-// необов'язковими. я можу зробити це, додавши ? після імені поля.
+// Я розумію.Для того, щоб всі властивості об'єкта стали обов'язковими і використати
+// Partial, я можу визначити тип User зі всіма обов'язковими властивостями, а
+// потім використовувати Partial на цьому типі:
 
-type User = {
-  name?: string;
-  surname?: string;
-  email?: string;
-  password?: string;
+type RequiredUser = {
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
 }
 
-function createOrUpdateUser(initialValues: User) {
+function createOrUpdateUser(initialValues: Partial<RequiredUser>) {
   // Оновлення користувача
 }
 
 createOrUpdateUser({ email: 'user@mail.com', password: 'password123' });
 
-// Таким чином, всі поля стали необов'язковими, і я можу викликати функцію
-// "createOrUpdateUser" з будь-яким піднабором полів, які мені потрібні для оновлення користувача.
+// Таким чином, RequiredUser містить всі обов'язкові властивості, і я можу 
+// використовувати Partial для зроблення деяких з них необов'язковими.

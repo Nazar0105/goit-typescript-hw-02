@@ -1,14 +1,18 @@
-// Для виправлення помилки та використання generics та інтерфейсів я переписав класи наступним чином:
+// Так ви парві.У мене вже є конкретний тип ComponentProps для параметрів класу
+// Component.Тому, якщо всі об'єкти, які я передю в клас Component, мають тип
+// ComponentProps, то не потрібно додатково вказувати T extends ComponentProps.Я
+// можу оголосити клас Component без вказівки генерика, і він буде користуватися
+// типом ComponentProps за замовчуванням:
 
 interface ComponentProps {
   title: string;
 }
 
-class Component<T extends ComponentProps> {
-  constructor(public props: T) {}
+class Component {
+  constructor(public props: ComponentProps) {}
 }
 
-class Page extends Component<ComponentProps> {
+class Page extends Component {
   pageInfo() {
     console.log(this.props.title);
   }
@@ -18,8 +22,4 @@ class Page extends Component<ComponentProps> {
 const page = new Page({ title: 'Sample Page' });
 page.pageInfo(); // Виведе "Sample Page"
 
-
-// У цьому прикладі я створив інтерфейс "ComponentProps", що містить властивості, які 
-// очікуються для об'єкта "props". Клас "Component" тепер приймає generics "T", який 
-// обмежується типом "ComponentProps", забезпечуючи, що "props" буде мати правильну
-// структуру.Клас "Page" наслідується від "Component" та передає "ComponentProps" як параметр для generics.
+// Це спростить мій код, і він все одно працюватиме правильно, оскільки всі об'єкти, які я передаю, мають тип ComponentProps.
